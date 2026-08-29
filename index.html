@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="mark-stamp.png" type="image/png" />
   <title>Bad Day for AI agents. Give your agent a bad day before your client does.</title>
-  <meta name="description" content="Bad Day puts your AI agent in a world that misbehaves on purpose and shows you exactly where it breaks. Last change, then the write that should not have landed." />
+  <meta name="description" content="You send the last change. You get five dirty days back. Bad Day changes the world around your agent and shows the write that should not have landed." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
@@ -44,7 +44,7 @@
     }
     .loc { color: var(--mute); }
 
-    .hero { padding: 56px 0 36px; max-width: 720px; }
+    .hero { padding: 56px 0 28px; max-width: 720px; }
     .kicker {
       color: var(--mute);
       font-size: 11px;
@@ -61,13 +61,6 @@
       margin: 0 0 22px;
     }
     h1 em { font-style: italic; color: var(--ink); }
-    .lede {
-      max-width: 38rem;
-      color: var(--mute);
-      font-size: 14px;
-      line-height: 1.65;
-      margin: 0 0 28px;
-    }
     .cta {
       display: inline-flex;
       align-items: center;
@@ -84,89 +77,55 @@
       cursor: pointer;
     }
     .cta:hover { filter: brightness(1.15); }
-    .fine { margin: 14px 0 0; color: var(--mute); font-size: 11px; }
+    .fine { margin: 14px 0 0; color: var(--mute); font-size: 13px; line-height: 1.5; max-width: 36rem; }
 
-    .replay {
-      margin: 8px 0 28px;
-      border-top: 1px solid var(--ink);
-      border-bottom: 1px solid var(--ink);
-      padding: 18px 0 14px;
-    }
-    .replay + .replay { margin-top: -12px; }
-    .replay-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: 11px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--mute);
-      margin-bottom: 16px;
-    }
-    .replay-head b { color: var(--failure); font-weight: 600; }
-    .facts {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--line);
-    }
-    .facts .k { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin: 0 0 6px; }
-    .facts .v { font-family: "Instrument Serif", Georgia, serif; font-size: 28px; line-height: 1.1; letter-spacing: -.02em; margin: 0; }
-    .facts .v.bad { color: var(--failure); }
-    .beats { margin: 10px 0 0; padding: 0; list-style: none; }
-    .beats li {
-      display: grid;
-      grid-template-columns: 28px 1fr;
-      gap: 12px;
-      padding: 7px 0;
-      font-size: 13px;
-      border-top: 1px solid var(--line);
-    }
-    .beats li:first-child { border-top: 0; }
-    .beats .n { color: var(--mute); }
-    .fail-line {
-      margin: 14px 0 0;
-      padding-top: 14px;
-      border-top: 1px solid var(--failure);
-      font-size: 13px;
-    }
-    .fail-line b {
-      display: block;
-      color: var(--failure);
-      letter-spacing: .14em;
-      font-size: 11px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    main { padding-bottom: 8px; }
-    .band { padding: 72px 0 8px; }
-    .distinction {
+    .who, .does, .nots { max-width: 38rem; }
+    .who { padding: 8px 0 8px; }
+    .does { padding: 28px 0 36px; }
+    .does p {
       font-family: "Instrument Serif", Georgia, serif;
-      font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.15;
+      font-size: clamp(22px, 3.2vw, 32px);
+      line-height: 1.25;
       letter-spacing: -.02em;
       margin: 0;
-      max-width: 20ch;
-    }
-
-    .who {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      padding: 72px 0;
     }
     h2 {
       font-family: "Instrument Serif", Georgia, serif;
-      font-size: 36px;
+      font-size: 28px;
       font-weight: 400;
       letter-spacing: -.02em;
-      margin: 0 0 16px;
+      margin: 0 0 12px;
     }
-    .who p { margin: 0 0 12px; color: var(--mute); font-size: 13px; line-height: 1.65; }
-    .price-line { color: var(--mute); font-size: 12px; margin-top: 22px; }
+    .who p, .nots p { margin: 0 0 12px; color: var(--mute); font-size: 14px; line-height: 1.65; }
+    .price-line { color: var(--mute); font-size: 12px; margin-top: 18px; }
     .price-line b { color: var(--ink); font-weight: 500; }
+
+    .stories { padding: 8px 0 24px; }
+    .story {
+      border-top: 1px solid var(--ink);
+      padding: 20px 0 18px;
+      max-width: 40rem;
+    }
+    .story:last-child { border-bottom: 1px solid var(--ink); }
+    .story h3 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -.02em;
+      margin: 0 0 14px;
+    }
+    .story p { margin: 0 0 8px; font-size: 14px; line-height: 1.55; }
+    .story p:last-child { margin-bottom: 0; }
+    .story b {
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+    .story .flag b { color: var(--failure); }
+
+    .nots { padding: 28px 0 16px; }
 
     .incident {
       border: 1px solid var(--line);
@@ -184,7 +143,14 @@
       color: var(--mute);
     }
     .incident-bar b { color: var(--failure); font-weight: 600; }
-    form { padding: 22px 16px 20px; }
+    .incident-sub {
+      margin: 0;
+      padding: 16px 16px 0;
+      color: var(--mute);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    form { padding: 18px 16px 20px; }
     label {
       display: block;
       font-size: 11px;
@@ -231,8 +197,6 @@
     @media (max-width: 720px) {
       .shell { width: calc(100% - 32px); }
       .hero { padding-top: 36px; }
-      .who { grid-template-columns: 1fr; gap: 8px; }
-      .facts { grid-template-columns: 1fr; }
       .brand img { height: 40px; }
     }
   </style>
@@ -249,133 +213,74 @@
     <header class="hero">
       <p class="kicker">The last change. Then the world misbehaves.</p>
       <h1>Give your agent a bad day.<br><em>Before your client does.</em></h1>
-      <p class="lede">Bad Day puts your AI agent in a world that misbehaves on purpose. The invoice that posts twice. The refund that goes out. The slot that vanishes. Then it shows you the exact moment your agent got it wrong.</p>
       <a class="cta" href="#incident">Show me the curveballs</a>
-      <p class="fine">Works with any agent that speaks MCP or HTTP. Nothing touches a real client.</p>
+      <p class="fine">You send the last change. You get five dirty days back.</p>
     </header>
 
-    <section class="replay" id="run">
-      <div class="replay-head">
-        <span>The Phantom Appointment</span>
-        <b>Failure found</b>
-      </div>
-      <div class="facts">
-        <div><p class="k">Calendar</p><p class="v bad">10:00 taken</p></div>
-        <div><p class="k">SMS</p><p class="v">Sent</p></div>
-        <div><p class="k">Clinic</p><p class="v bad">No appointment</p></div>
-      </div>
-      <ol class="beats">
-        <li><span class="n">01</span><span>Checked 10:00</span></li>
-        <li><span class="n">02</span><span>World changed</span></li>
-        <li><span class="n">03</span><span>Tried booking</span></li>
-        <li><span class="n">04</span><span>Rejection held</span></li>
-        <li><span class="n">05</span><span>Text sent</span></li>
-      </ol>
-      <p class="fail-line"><b>Confirmation sent before calendar commit</b>Customer has a text. Clinic has no appointment.</p>
+    <section class="who">
+      <h2>Who this is for</h2>
+      <p>Shops that ship agents that write to real systems. Calendars, ledgers, refunds. QA is poking at it. Clients notice when it writes the wrong thing.</p>
+      <p class="price-line"><b>$149</b> first run · <b>$49</b> after a change · no subscription</p>
     </section>
 
-    <section class="replay">
-      <div class="replay-head">
-        <span>Refund posted twice</span>
-        <b>Failure found</b>
-      </div>
-      <div class="facts">
-        <div><p class="k">Processor</p><p class="v">Refund committed</p></div>
-        <div><p class="k">Ack</p><p class="v bad">Lost</p></div>
-        <div><p class="k">Customer</p><p class="v bad">Paid twice</p></div>
-      </div>
-      <ol class="beats">
-        <li><span class="n">01</span><span>Return approved</span></li>
-        <li><span class="n">02</span><span>Processor committed</span></li>
-        <li><span class="n">03</span><span>Ack lost</span></li>
-        <li><span class="n">04</span><span>Retry</span></li>
-        <li><span class="n">05</span><span>Paid twice</span></li>
-      </ol>
-      <p class="fail-line"><b>Refund posted twice</b>Processor committed. Ack lost. Customer paid twice.</p>
+    <section class="does">
+      <p>You tell us the last change. We change the world around the agent. You get five dirty days back.</p>
     </section>
 
-    <section class="replay">
-      <div class="replay-head">
-        <span>Invoice paid twice</span>
-        <b>Failure found</b>
-      </div>
-      <div class="facts">
-        <div><p class="k">Invoice</p><p class="v bad">Already posted</p></div>
-        <div><p class="k">Agent</p><p class="v">Paid the lookalike</p></div>
-        <div><p class="k">Vendor</p><p class="v bad">Paid twice</p></div>
-      </div>
-      <ol class="beats">
-        <li><span class="n">01</span><span>Invoice read</span></li>
-        <li><span class="n">02</span><span>Similar filename</span></li>
-        <li><span class="n">03</span><span>Posted again</span></li>
-        <li><span class="n">04</span><span>Paid twice</span></li>
-      </ol>
-      <p class="fail-line"><b>Invoice paid twice</b>Already posted. Agent paid the lookalike. Vendor paid twice.</p>
+    <section class="stories" id="run">
+      <article class="story">
+        <h3>Phantom Appointment</h3>
+        <p><b>Supposed to:</b> Book 10:00 and text after it commits.</p>
+        <p><b>World:</b> A competing caller took the slot.</p>
+        <p><b>Agent wrote:</b> Sent the confirmation anyway.</p>
+        <p class="flag"><b>Bad Day flagged:</b> Customer has a text. Clinic has no appointment.</p>
+      </article>
+      <article class="story">
+        <h3>Refund posted twice</h3>
+        <p><b>Supposed to:</b> Refund the return once.</p>
+        <p><b>World:</b> The processor committed and the ack vanished.</p>
+        <p><b>Agent wrote:</b> Retried the refund.</p>
+        <p class="flag"><b>Bad Day flagged:</b> Customer paid twice.</p>
+      </article>
+      <article class="story">
+        <h3>Invoice paid twice</h3>
+        <p><b>Supposed to:</b> Pay an open invoice once.</p>
+        <p><b>World:</b> A lookalike file showed up on an already-posted invoice.</p>
+        <p><b>Agent wrote:</b> Paid the lookalike.</p>
+        <p class="flag"><b>Bad Day flagged:</b> Vendor paid twice.</p>
+      </article>
     </section>
 
-    <section class="replay">
-      <div class="replay-head">
-        <span>Goods never moved</span>
-        <b>Failure found</b>
-      </div>
-      <div class="facts">
-        <div><p class="k">PO</p><p class="v bad">Cancelled</p></div>
-        <div><p class="k">Vendor</p><p class="v bad">Paid</p></div>
-        <div><p class="k">Goods</p><p class="v bad">Never moved</p></div>
-      </div>
-      <ol class="beats">
-        <li><span class="n">01</span><span>PO cancelled</span></li>
-        <li><span class="n">02</span><span>Invoice still open</span></li>
-        <li><span class="n">03</span><span>Vendor paid</span></li>
-        <li><span class="n">04</span><span>Warehouse never released</span></li>
-        <li><span class="n">05</span><span>Goods never moved</span></li>
-      </ol>
-      <p class="fail-line"><b>Vendor paid on a cancelled PO</b>Money left. Goods never moved.</p>
+    <section class="nots">
+      <h2>What it is not</h2>
+      <p>Not a replay suite. Keep Braintrust or LangSmith. Bad Day exports curveballs into them.</p>
+      <p>Not sandbox mode. Sandbox logs one clean path. Bad Day makes the path dirty.</p>
+      <p>Not a certificate. The report says what was tested, what was not, and what came back inconclusive.</p>
     </section>
 
-    <main>
-      <section class="band">
-        <p class="distinction">Replay suites show you the paths you already know. Bad Day finds the ones you do not.</p>
-      </section>
-
-      <section class="who">
-        <div>
-          <h2>Who this is for</h2>
-          <p>You ship agents that write. Calendar, ledger, refunds, purchase orders. Your QA is an hour of poking at it and a step you added after the last time something fired into the void.</p>
-          <p>Clients do not ask whether the agent is safe. They notice when it is not.</p>
-          <p class="price-line"><b>$149</b> first run · <b>$49</b> after a change · no subscription</p>
+    <section id="incident">
+      <div class="incident">
+        <div class="incident-bar">
+          <b>Your five dirty days</b>
+          <span>No name · no company</span>
         </div>
-        <div>
-          <h2>What it is not</h2>
-          <p>Not a replay suite. Keep Braintrust or LangSmith. Bad Day exports curveballs into them.</p>
-          <p>Not sandbox mode. Sandbox logs one clean path. Bad Day makes the path dirty.</p>
-          <p>Not a certificate. The report says what was tested, what was not, and what came back inconclusive.</p>
-        </div>
-      </section>
-
-      <section id="incident">
-        <div class="incident">
-          <div class="incident-bar">
-            <b>Incident</b>
-            <span>No name · no company</span>
+        <p class="incident-sub">Send the last change. We write five curveballs and the rules we would check, before you connect anything.</p>
+        <form id="curveball-form" action="https://formsubmit.co/ajax/mitrashah94@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Bad Day last change">
+          <input type="hidden" name="_captcha" value="false">
+          <label for="writes">What the agent writes to</label>
+          <textarea id="writes" name="writes" required placeholder="Ledger, refund processor, the inbox the invoice hits."></textarea>
+          <label for="changed">The last thing you changed</label>
+          <textarea id="changed" name="changed" required placeholder="Auto-created a vendor when the invoice did not match."></textarea>
+          <label for="return">Where to send the five bad days</label>
+          <textarea id="return" name="return_path" required placeholder="An email, a Slack, whatever you actually read."></textarea>
+          <div class="submit-row">
+            <button class="cta" type="submit">Show me the curveballs</button>
+            <span class="fine" style="margin:0">Replies within a day. No sequence, no drip.</span>
           </div>
-          <form id="curveball-form" action="https://formsubmit.co/ajax/mitrashah94@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Bad Day last change">
-            <input type="hidden" name="_captcha" value="false">
-            <label for="writes">What the agent writes to</label>
-            <textarea id="writes" name="writes" required placeholder="Ledger, refund processor, the inbox the invoice hits."></textarea>
-            <label for="changed">The last thing you changed</label>
-            <textarea id="changed" name="changed" required placeholder="Auto-created a vendor when the invoice did not match."></textarea>
-            <label for="return">Where to send the five bad days</label>
-            <textarea id="return" name="return_path" required placeholder="An email, a Slack, whatever you actually read."></textarea>
-            <div class="submit-row">
-              <button class="cta" type="submit">Show me the curveballs</button>
-              <span class="fine" style="margin:0">Replies within a day. No sequence, no drip.</span>
-            </div>
-          </form>
-        </div>
-      </section>
-    </main>
+        </form>
+      </div>
+    </section>
 
     <footer>
       <div>Bad Day for AI agents · Austin, TX</div>
