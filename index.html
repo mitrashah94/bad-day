@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="mark.jpg" type="image/jpeg" />
   <title>Bad Day for AI agents. Give your agent a bad day before your client does.</title>
   <meta name="description" content="Bad Day puts your AI agent in a world that misbehaves on purpose and shows you exactly where it breaks. Built for agencies shipping agents to clients." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -50,13 +51,24 @@
     .top {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
       letter-spacing: .16em;
       font-size: 11px;
       text-transform: uppercase;
     }
-    .top b { font-weight: 600; letter-spacing: .2em; }
-    .top span { color: var(--yellow); font-weight: 400; }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .brand img {
+      height: 52px;
+      width: auto;
+      display: block;
+      background: #fff;
+    }
+    .brand span { color: var(--mute); font-weight: 400; letter-spacing: .14em; }
     .loc { color: var(--mute); }
 
     .hero-copy { max-width: 640px; margin-top: auto; padding-bottom: 8vh; }
@@ -233,7 +245,10 @@
   <header class="hero">
     <div class="hero-inner">
       <div class="top">
-        <div><b>Bad Day</b> <span>for AI agents</span></div>
+        <a class="brand" href="./" aria-label="Bad Day">
+          <img src="mark.jpg" alt="BAD DAY" />
+          <span>for AI agents</span>
+        </a>
         <div class="loc">Austin, TX</div>
       </div>
       <div class="hero-copy">
