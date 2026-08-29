@@ -313,6 +313,26 @@
       <p class="fail-line"><b>Invoice paid twice</b>Already posted. Agent paid the lookalike. Vendor paid twice.</p>
     </section>
 
+    <section class="replay">
+      <div class="replay-head">
+        <span>Goods never moved</span>
+        <b>Failure found</b>
+      </div>
+      <div class="facts">
+        <div><p class="k">PO</p><p class="v bad">Cancelled</p></div>
+        <div><p class="k">Vendor</p><p class="v bad">Paid</p></div>
+        <div><p class="k">Goods</p><p class="v bad">Never moved</p></div>
+      </div>
+      <ol class="beats">
+        <li><span class="n">01</span><span>PO cancelled</span></li>
+        <li><span class="n">02</span><span>Invoice still open</span></li>
+        <li><span class="n">03</span><span>Vendor paid</span></li>
+        <li><span class="n">04</span><span>Warehouse never released</span></li>
+        <li><span class="n">05</span><span>Goods never moved</span></li>
+      </ol>
+      <p class="fail-line"><b>Vendor paid on a cancelled PO</b>Money left. Goods never moved.</p>
+    </section>
+
     <main>
       <section class="band">
         <p class="distinction">Replay suites show you the paths you already know. Bad Day finds the ones you do not.</p>
@@ -321,7 +341,7 @@
       <section class="who">
         <div>
           <h2>Who this is for</h2>
-          <p>You ship agents that write. Calendar, ledger, refunds. Your QA is an hour of poking at it and a step you added after the last time something fired into the void.</p>
+          <p>You ship agents that write. Calendar, ledger, refunds, purchase orders. Your QA is an hour of poking at it and a step you added after the last time something fired into the void.</p>
           <p>Clients do not ask whether the agent is safe. They notice when it is not.</p>
           <p class="price-line"><b>$149</b> first run · <b>$49</b> after a change · no subscription</p>
         </div>
