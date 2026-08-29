@@ -4,239 +4,324 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bad Day for AI agents. Give your agent a bad day before your client does.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <meta name="description" content="Bad Day puts your AI agent in a world that misbehaves on purpose and shows you exactly where it breaks. Built for agencies shipping agents to clients." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0b0c0f;
-      --bg-2: #12141a;
-      --line: rgba(255,255,255,.08);
-      --text: #f4f1ea;
-      --muted: #9a958a;
-      --yellow: #f5c542;
-      --red: #e23b3b;
-      --green: #3dbe7a;
+      --bg: #070708;
+      --ink: #ece7dc;
+      --mute: #8a857a;
+      --yellow: #e6b83d;
+      --red: #d63a32;
+      --line: rgba(236,231,220,.14);
     }
     * { box-sizing: border-box; }
-    html, body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
-    body { font-size: 17px; line-height: 1.5; }
+    html, body { margin: 0; background: var(--bg); color: var(--ink); }
+    body { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 14px; line-height: 1.45; }
     a { color: inherit; }
-    .wrap { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
-    header.top { padding: 22px 0 0; display: flex; align-items: baseline; justify-content: space-between; }
-    .mark { font-weight: 700; letter-spacing: .02em; font-size: 15px; }
-    .mark span { color: var(--yellow); }
-    .loc { color: var(--muted); font-size: 13px; }
-    .hero { padding: 72px 0 28px; }
-    h1 { font-size: clamp(42px, 7vw, 84px); line-height: .95; letter-spacing: -.04em; margin: 0 0 28px; font-weight: 650; }
-    h1 em { font-style: normal; color: var(--yellow); }
-    .lede { max-width: 640px; color: #d9d4c8; font-size: 20px; margin: 0 0 32px; }
-    .actions { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; background: var(--yellow); color: #111; font-weight: 650; border: 0; border-radius: 999px; padding: 14px 22px; text-decoration: none; font-size: 15px; cursor: pointer; }
-    .btn:hover { filter: brightness(1.05); }
-    .ghost { color: var(--text); text-decoration: none; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: 2px; }
-    .fine { margin-top: 14px; color: var(--muted); font-size: 13px; }
-    .video { margin: 36px 0 80px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-    .video-label { padding: 14px 18px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line); }
-    .stage { position: relative; padding: 28px 28px 22px; min-height: 320px; }
-    .proto { position: absolute; top: 18px; right: 18px; font-size: 11px; letter-spacing: .12em; border: 1px solid rgba(255,255,255,.2); padding: 4px 8px; border-radius: 999px; color: var(--muted); }
-    .change { display: inline-flex; gap: 8px; align-items: center; font-size: 12px; border: 1px solid var(--yellow); color: var(--yellow); border-radius: 999px; padding: 4px 10px; margin-bottom: 14px; }
-    .stage h2 { margin: 0 0 6px; font-size: 28px; letter-spacing: -.02em; }
-    .stage p.sub { margin: 0 0 22px; color: var(--muted); }
-    .systems { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .sys { background: #0b0c0f; border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
-    .sys .tag { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
-    .sys .tag.state { color: var(--yellow); }
-    .sys .tag.control { color: #f08a3a; }
-    .sys .tag.chain { color: #6ea8ff; }
-    .sys strong { display: block; font-size: 16px; }
-    .fail { color: var(--red); font-size: 13px; margin-top: 4px; }
-    .warn { color: var(--yellow); font-size: 13px; margin-top: 4px; }
-    .bar { margin-top: 18px; background: #2a1010; border: 1px solid rgba(226,59,59,.35); border-radius: 12px; padding: 16px 18px; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
-    .bar b { color: var(--red); letter-spacing: .08em; font-size: 12px; }
-    .dots { display: flex; gap: 16px; margin-top: 16px; color: var(--muted); font-size: 12px; flex-wrap: wrap; }
-    .dots i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
-    section { padding: 8px 0 72px; }
-    h3 { font-size: 28px; letter-spacing: -.02em; margin: 0 0 16px; }
-    .distinction { font-size: 28px; letter-spacing: -.02em; line-height: 1.25; max-width: 820px; }
-    .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
-    .card b { display: block; margin-bottom: 8px; }
-    .card p { margin: 0; color: #cfc9bc; font-size: 15px; }
-    .curves { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-    .curve { display: grid; grid-template-columns: 24px 1fr; gap: 14px; padding: 16px 18px; border-top: 1px solid var(--line); }
-    .curve:first-child { border-top: 0; }
-    .n { color: var(--yellow); font-weight: 650; }
-    .who, .nots { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; }
-    .nots .card { margin-bottom: 12px; }
-    .price { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .price .card strong { font-size: 32px; letter-spacing: -.03em; display: block; margin: 6px 0 8px; }
-    details { border-top: 1px solid var(--line); padding: 14px 0; }
-    details summary { cursor: pointer; font-weight: 600; }
-    details p { color: #cfc9bc; margin: 10px 0 0; }
-    form.cta { background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
-    textarea { width: 100%; min-height: 110px; background: #0b0c0f; color: var(--text); border: 1px solid var(--line); border-radius: 10px; padding: 14px; font: inherit; resize: vertical; }
-    .cta-row { display: flex; gap: 16px; align-items: center; margin-top: 14px; flex-wrap: wrap; }
-    footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-    @media (max-width: 800px) {
-      .systems, .grid4, .who, .nots, .price { grid-template-columns: 1fr; }
-      .hero { padding-top: 40px; }
-      .stage { padding: 18px; }
+    button, textarea { font: inherit; color: inherit; }
+    .serif { font-family: "Instrument Serif", Georgia, serif; }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      overflow: hidden;
+      background: #070708 url("phantom-appointment.png") 72% 42% / cover no-repeat;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, #070708 0%, rgba(7,7,8,.88) 34%, rgba(7,7,8,.35) 62%, rgba(7,7,8,.12) 100%),
+        linear-gradient(180deg, rgba(7,7,8,.45) 0%, transparent 28%, rgba(7,7,8,.55) 100%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      padding: 22px 28px 36px;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      letter-spacing: .16em;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+    .top b { font-weight: 600; letter-spacing: .2em; }
+    .top span { color: var(--yellow); font-weight: 400; }
+    .loc { color: var(--mute); }
+
+    .hero-copy { max-width: 640px; margin-top: auto; padding-bottom: 8vh; }
+    .kicker {
+      color: var(--yellow);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+    }
+    h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(48px, 7.4vw, 92px);
+      line-height: .9;
+      font-weight: 400;
+      letter-spacing: -.03em;
+      margin: 0 0 22px;
+    }
+    h1 em { font-style: italic; color: var(--yellow); }
+    .lede {
+      max-width: 34rem;
+      color: #cfc8ba;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 0 0 28px;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--yellow);
+      color: #111;
+      text-decoration: none;
+      border: 0;
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .cta:hover { filter: brightness(1.06); }
+    .fine { margin: 14px 0 0; color: var(--mute); font-size: 11px; }
+
+    main { width: min(920px, calc(100% - 48px)); margin: 0 auto; }
+    .band { padding: 88px 0 8px; }
+    .distinction {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      margin: 0;
+      max-width: 18ch;
+    }
+
+    .log-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 0;
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+    .log-head b { color: var(--ink); font-weight: 600; }
+    .log { border-bottom: 1px solid var(--line); }
+    .row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 18px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+    .idx { color: var(--yellow); font-weight: 500; }
+    .row p { margin: 6px 0 0; color: var(--mute); max-width: 54ch; }
+    .row strong { font-weight: 600; letter-spacing: .04em; }
+
+    .who {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 72px 0;
+    }
+    h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 36px;
+      font-weight: 400;
+      letter-spacing: -.02em;
+      margin: 0 0 16px;
+    }
+    .who p { margin: 0 0 12px; color: #cfc8ba; font-size: 13px; line-height: 1.65; }
+    .price-line { color: var(--mute); font-size: 12px; margin-top: 22px; }
+    .price-line b { color: var(--ink); font-weight: 500; }
+
+    .incident {
+      border: 1px solid var(--line);
+      background: #0c0c0e;
+      margin: 24px 0 96px;
+    }
+    .incident-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+    .incident-bar b { color: var(--red); font-weight: 600; }
+    form { padding: 22px 16px 20px; }
+    label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin: 0 0 8px;
+    }
+    label + textarea + label { margin-top: 20px; }
+    textarea {
+      width: 100%;
+      min-height: 72px;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+      padding: 0 0 10px;
+      resize: vertical;
+      outline: none;
+    }
+    textarea:focus { border-bottom-color: var(--yellow); }
+    .submit-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      width: min(920px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 0 0 48px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--mute);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+    }
+
+    @media (max-width: 720px) {
+      .hero { background-position: 80% 30%; }
+      .hero-inner { padding: 18px 18px 28px; }
+      .hero::before {
+        background:
+          linear-gradient(180deg, rgba(7,7,8,.55) 0%, rgba(7,7,8,.78) 42%, #070708 100%);
+      }
+      .who { grid-template-columns: 1fr; gap: 8px; }
+      .row { grid-template-columns: 40px 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="top">
-      <div class="mark">BAD DAY <span>for AI agents</span></div>
-      <div class="loc">Austin, TX</div>
-    </header>
-
-    <div class="hero">
-      <h1>Give your agent a bad day.<br><em>Before your client does.</em></h1>
-      <p class="lede">Bad Day puts your AI agent in a world that misbehaves on purpose. The wrong customer. The slot that vanishes. The text that sends before the booking lands. Then it shows you the exact moment your agent got it wrong.</p>
-      <div class="actions">
-        <a class="btn" href="#curveballs">Give my agent a bad day</a>
-        <a class="ghost" href="#run">Watch the 60-second run</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="top">
+        <div><b>Bad Day</b> <span>for AI agents</span></div>
+        <div class="loc">Austin, TX</div>
       </div>
-      <p class="fine">Works with any agent that speaks MCP or HTTP. Nothing touches a real client.</p>
-    </div>
-
-    <div class="video" id="run">
-      <div class="video-label">We Gave This Agent a Bad Day · episode one: the front desk bot</div>
-      <div class="stage">
-        <div class="proto">SIMULATED ENVIRONMENT</div>
-        <div class="change">Workflow change · confirmation text</div>
-        <h2>The Phantom Appointment</h2>
-        <p class="sub">A five-step booking agent, one new step, six curveballs, one failure. Recorded from a real run.</p>
-        <div class="systems">
-          <div class="sys">
-            <div class="tag state">State · competing caller takes 10:00</div>
-            <strong>10:00 TAKEN</strong>
-            <div class="fail">Booking rejected</div>
-          </div>
-          <div class="sys">
-            <div class="tag control">Control · reject stale booking</div>
-            <strong>Sarah Chen</strong>
-            <div class="warn">Booking pending</div>
-          </div>
-          <div class="sys">
-            <div class="tag chain">Chain · hold rejection 4s</div>
-            <strong>Confirmation sent</strong>
-            <div class="fail">Delivered early</div>
-          </div>
-        </div>
-        <div class="dots">
-          <span><i style="background:#3dbe7a"></i>Checked 10:00</span>
-          <span><i style="background:#f5c542"></i>World changed</span>
-          <span><i style="background:#e23b3b"></i>Tried booking</span>
-          <span><i style="background:#6ea8ff"></i>Rejection held</span>
-          <span><i style="background:#e23b3b"></i>Text sent</span>
-        </div>
-        <div class="bar">
-          <div>
-            <b>FAILURE FOUND</b>
-            <div>Confirmation sent before calendar commit. Customer has a text. Clinic has no appointment.</div>
-          </div>
-        </div>
+      <div class="hero-copy">
+        <p class="kicker">Episode one · the front desk bot</p>
+        <h1>Give your agent a bad day.<br><em>Before your client does.</em></h1>
+        <p class="lede">Bad Day puts your AI agent in a world that misbehaves on purpose. The wrong customer. The slot that vanishes. The text that sends before the booking lands. Then it shows you the exact moment your agent got it wrong.</p>
+        <a class="cta" href="#incident">Show me the curveballs</a>
+        <p class="fine">Works with any agent that speaks MCP or HTTP. Nothing touches a real client.</p>
       </div>
     </div>
+  </header>
 
-    <section>
-      <p class="distinction">Replay suites show you what your agent did on the paths you already know about. Bad Day finds the paths you do not.</p>
+  <main>
+    <section class="band">
+      <p class="distinction">Replay suites show you the paths you already know. Bad Day finds the ones you do not.</p>
     </section>
 
-    <section>
-      <h3>How it works</h3>
-      <div class="grid4">
-        <div class="card"><b>Connect</b><p>Point your agent at Bad Day instead of its real tools. Two minutes. Credentials and client data stay on your machine.</p></div>
-        <div class="card"><b>Describe it</b><p>Two sentences about what the agent does. Bad Day proposes the rules it should never break. You approve them. No test code.</p></div>
-        <div class="card"><b>Curveballs</b><p>The world misbehaves. Stale records. Lost acknowledgements. Two customers with the same name. Every rule gets checked.</p></div>
-        <div class="card"><b>The trace</b><p>Every failure shows the exact turn, what the agent saw, what it did, and what the world recorded. Fix it. Run it again.</p></div>
+    <section class="band">
+      <div class="log-head">
+        <b>Campaign one · curveballs</b>
+        <span>Typed scenarios. Same seed every time.</span>
       </div>
-    </section>
-
-    <section>
-      <h3>The curveballs. Campaign one.</h3>
-      <div class="curves">
-        <div class="curve"><div class="n">1</div><div>Two customers, nearly the same name. Does it book the right one?</div></div>
-        <div class="curve"><div class="n">2</div><div>The slot disappears between the check and the booking. Does it notice?</div></div>
-        <div class="curve"><div class="n">3</div><div>The calendar write succeeds but the acknowledgement is lost. Does it book twice?</div></div>
-        <div class="curve"><div class="n">4</div><div>The confirmation text goes out before the booking commits. Does it tell someone about an appointment that does not exist?</div></div>
-        <div class="curve"><div class="n">5</div><div>The calendar saves but the CRM fails. Does it say “done”?</div></div>
-        <div class="curve"><div class="n">6</div><div>No consent on file to text. Does it text anyway?</div></div>
+      <div class="log">
+        <div class="row"><div class="idx">01</div><div><strong>TWO CUSTOMERS, NEARLY THE SAME NAME</strong><p>Does it book the right one?</p></div></div>
+        <div class="row"><div class="idx">02</div><div><strong>SLOT VANISHES BETWEEN CHECK AND BOOKING</strong><p>Does it notice?</p></div></div>
+        <div class="row"><div class="idx">03</div><div><strong>WRITE SUCCEEDS, ACKNOWLEDGEMENT LOST</strong><p>Does it book twice?</p></div></div>
+        <div class="row"><div class="idx">04</div><div><strong>CONFIRMATION TEXT BEFORE COMMIT</strong><p>Does it tell someone about an appointment that does not exist?</p></div></div>
+        <div class="row"><div class="idx">05</div><div><strong>CALENDAR SAVES, CRM FAILS</strong><p>Does it say “done”?</p></div></div>
+        <div class="row"><div class="idx">06</div><div><strong>NO CONSENT ON FILE TO TEXT</strong><p>Does it text anyway?</p></div></div>
       </div>
-      <p class="fine" style="margin-top:14px">Every curveball is a typed, repeatable scenario, not a prompt. Same seed, same failure, every time.</p>
     </section>
 
     <section class="who">
       <div>
-        <h3>Who this is for</h3>
-        <p>You ship AI agents to clients. Front desk, booking, scheduling, support. Your QA is an hour of poking at it and a confirmation step you added after the last time something fired into the void.</p>
-        <p>Clients do not ask whether the agent is safe. They notice when it is not. Bad Day is the hour of poking, done properly, in ten minutes, with a trace you can act on.</p>
+        <h2>Who this is for</h2>
+        <p>You ship agents to clients. Front desk, booking, scheduling. Your QA is an hour of poking at it and a confirmation step you added after the last time something fired into the void.</p>
+        <p>Clients do not ask whether the agent is safe. They notice when it is not.</p>
+        <p class="price-line"><b>$149</b> first run · <b>$49</b> after a change · no subscription</p>
       </div>
-      <div class="nots">
-        <div class="card"><b>Not a replay suite</b><p>Keep Braintrust or LangSmith. Bad Day exports curveballs into them.</p></div>
-        <div class="card"><b>Not sandbox mode</b><p>Sandbox logs one clean path. Bad Day makes the path dirty.</p></div>
-        <div class="card"><b>Not a certificate</b><p>The report says what was tested, what was not, and what came back inconclusive.</p></div>
+      <div>
+        <h2>What it is not</h2>
+        <p>Not a replay suite. Keep Braintrust or LangSmith. Bad Day exports curveballs into them.</p>
+        <p>Not sandbox mode. Sandbox logs one clean path. Bad Day makes the path dirty.</p>
+        <p>Not a certificate. The report says what was tested, what was not, and what came back inconclusive.</p>
       </div>
     </section>
 
-    <section>
-      <h3>Pricing</h3>
-      <div class="price">
-        <div class="card"><div class="fine">First run</div><strong>$149</strong><p>One agent, all applicable curveballs, full trace. No subscription.</p></div>
-        <div class="card"><div class="fine">Re-run after a change</div><strong>$49</strong><p>Same agent. See what newly fails and what newly passes.</p></div>
-      </div>
-      <p class="fine" style="margin-top:14px">Agencies running five or more agents a month: talk to us.</p>
-    </section>
-
-    <section>
-      <h3>Questions</h3>
-      <details><summary>Does it touch my client’s real systems?</summary><p>No. Bad Day records your agent’s real tool responses once, in a read-only pass, then serves them back with curveballs applied. Writes never reach the origin.</p></details>
-      <details><summary>What do I need to set up?</summary><p>An agent that speaks MCP or HTTP, and two sentences about what it does. Nothing else for the first run.</p></details>
-      <details><summary>My evals already cover this.</summary><p>Evals ask the agent more questions. Bad Day changes the answers the world gives back.</p></details>
-      <details><summary>Does it judge response quality?</summary><p>Only against what the world actually did. “Said done when the write failed” is a failure. “Could have been friendlier” is not.</p></details>
-      <details><summary>What if it finds nothing?</summary><p>The report lists every rule checked, every curveball run, and anything inconclusive. A clean run tells you what was covered, not that your agent is safe.</p></details>
-    </section>
-
-    <section id="curveballs">
-      <h3>Give your agent a bad day.</h3>
-      <p class="lede" style="font-size:18px">Tell us what the agent writes to, and the last thing you changed. You get back the six curveballs we would throw at it and the rules we would check, before you connect anything.</p>
-      <form class="cta" id="curveball-form" action="https://formsubmit.co/ajax/mitrashah94@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Bad Day campaign one">
-        <input type="hidden" name="_captcha" value="false">
-        <label class="fine" for="writes">What the agent writes to</label>
-        <textarea id="writes" name="writes" placeholder="Calendar, CRM, and confirmation SMS."></textarea>
-        <label class="fine" for="changed" style="display:block;margin-top:14px">The last thing you changed</label>
-        <textarea id="changed" name="changed" placeholder="Added a confirmation text after the booking commits."></textarea>
-        <div class="cta-row">
-          <button class="btn" type="submit">Show me the curveballs</button>
-          <span class="fine">Replies within a day. No sequence, no drip. No name, email, or company.</span>
+    <section id="incident">
+      <div class="incident">
+        <div class="incident-bar">
+          <b>Incident</b>
+          <span>No name · no email · no company</span>
         </div>
-      </form>
+        <form id="curveball-form" action="https://formsubmit.co/ajax/mitrashah94@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Bad Day campaign one">
+          <input type="hidden" name="_captcha" value="false">
+          <label for="writes">What the agent writes to</label>
+          <textarea id="writes" name="writes" required placeholder="Calendar, CRM, and confirmation SMS."></textarea>
+          <label for="changed">The last thing you changed</label>
+          <textarea id="changed" name="changed" required placeholder="Added a confirmation text after the booking commits."></textarea>
+          <div class="submit-row">
+            <button class="cta" type="submit">Show me the curveballs</button>
+            <span class="fine" style="margin:0">Replies within a day. No sequence, no drip.</span>
+          </div>
+        </form>
+      </div>
     </section>
+  </main>
 
-    <footer>
-      <div>Bad Day for AI agents. Austin, TX.</div>
-      <div>Simulated environments only. No safety claims.</div>
-    </footer>
-  </div>
-<script>
-  document.getElementById("curveball-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector("button");
-    btn.disabled = true;
-    try {
-      const res = await fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
-      btn.textContent = res.ok ? "Got it. Reply within a day." : "Couldn’t send. Try again.";
-    } catch {
-      btn.textContent = "Couldn’t send. Try again.";
-      btn.disabled = false;
-    }
-  });
-</script>
+  <footer>
+    <div>Bad Day for AI agents · Austin, TX</div>
+    <div>Simulated environments only. No safety claims.</div>
+  </footer>
+
+  <script>
+    document.getElementById("curveball-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector("button");
+      btn.disabled = true;
+      try {
+        const res = await fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+        btn.textContent = res.ok ? "Got it. Reply within a day." : "Couldn’t send. Try again.";
+        if (!res.ok) btn.disabled = false;
+      } catch {
+        btn.textContent = "Couldn’t send. Try again.";
+        btn.disabled = false;
+      }
+    });
+  </script>
 </body>
 </html>
