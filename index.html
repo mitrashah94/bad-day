@@ -192,6 +192,7 @@
       outline: none;
     }
     textarea:focus { border-bottom-color: var(--yellow); }
+    #return { min-height: 40px; resize: none; }
     .submit-row {
       display: flex;
       justify-content: space-between;
@@ -284,7 +285,7 @@
       <div class="incident">
         <div class="incident-bar">
           <b>Incident</b>
-          <span>No name · no email · no company</span>
+          <span>No name · no company</span>
         </div>
         <form id="curveball-form" action="https://formsubmit.co/ajax/mitrashah94@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="Bad Day campaign one">
@@ -293,6 +294,8 @@
           <textarea id="writes" name="writes" required placeholder="Calendar, CRM, and confirmation SMS."></textarea>
           <label for="changed">The last thing you changed</label>
           <textarea id="changed" name="changed" required placeholder="Added a confirmation text after the booking commits."></textarea>
+          <label for="return">Where to send the five bad days</label>
+          <textarea id="return" name="return_path" required placeholder="An email, a Slack, whatever you actually read."></textarea>
           <div class="submit-row">
             <button class="cta" type="submit">Show me the curveballs</button>
             <span class="fine" style="margin:0">Replies within a day. No sequence, no drip.</span>
