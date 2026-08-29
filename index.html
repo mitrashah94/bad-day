@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="mark.jpg" type="image/jpeg" />
+  <link rel="icon" href="mark-stamp.png" type="image/png" />
   <title>Bad Day for AI agents. Give your agent a bad day before your client does.</title>
   <meta name="description" content="Bad Day puts your AI agent in a world that misbehaves on purpose and shows you exactly where it breaks. Built for agencies shipping agents to clients." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,18 +35,13 @@
       font-size: 11px;
       text-transform: uppercase;
     }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
+    .brand { text-decoration: none; line-height: 0; }
     .brand img {
-      height: 64px;
+      height: 40px;
       width: auto;
       display: block;
+      mix-blend-mode: multiply;
     }
-    .brand span { color: var(--mute); }
     .loc { color: var(--mute); }
 
     .hero { padding: 56px 0 36px; max-width: 720px; }
@@ -91,27 +86,57 @@
     .cta:hover { filter: brightness(1.15); }
     .fine { margin: 14px 0 0; color: var(--mute); font-size: 11px; }
 
-    .screen {
-      margin: 12px 0 24px;
-      background: #070708;
-      border: 1px solid var(--ink);
+    .replay {
+      margin: 8px 0 28px;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 18px 0 14px;
     }
-    .screen-bar {
+    .replay-head {
       display: flex;
       justify-content: space-between;
-      padding: 10px 14px;
+      align-items: baseline;
       font-size: 11px;
-      letter-spacing: .14em;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      color: #8a857a;
-      border-bottom: 1px solid rgba(236,231,220,.12);
-      background: #070708;
+      color: var(--mute);
+      margin-bottom: 16px;
     }
-    .screen img {
+    .replay-head b { color: var(--failure); font-weight: 600; }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .facts .k { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin: 0 0 6px; }
+    .facts .v { font-family: "Instrument Serif", Georgia, serif; font-size: 28px; line-height: 1; letter-spacing: -.02em; margin: 0; }
+    .facts .v.bad { color: var(--failure); }
+    .beats { margin: 10px 0 0; padding: 0; list-style: none; }
+    .beats li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      padding: 7px 0;
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+    }
+    .beats li:first-child { border-top: 0; }
+    .beats .n { color: var(--mute); }
+    .fail-line {
+      margin: 14px 0 0;
+      padding-top: 14px;
+      border-top: 1px solid var(--failure);
+      font-size: 13px;
+    }
+    .fail-line b {
       display: block;
-      width: 100%;
-      height: auto;
-      vertical-align: top;
+      color: var(--failure);
+      letter-spacing: .14em;
+      font-size: 11px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
     }
 
     main { padding-bottom: 8px; }
@@ -230,8 +255,9 @@
       .shell { width: calc(100% - 32px); }
       .hero { padding-top: 36px; }
       .who { grid-template-columns: 1fr; gap: 8px; }
+      .facts { grid-template-columns: 1fr; }
       .row { grid-template-columns: 40px 1fr; }
-      .brand img { height: 52px; }
+      .brand img { height: 40px; }
     }
   </style>
 </head>
@@ -239,8 +265,7 @@
   <div class="shell">
     <div class="top">
       <a class="brand" href="./" aria-label="Bad Day">
-        <img src="mark.jpg" alt="BAD DAY" />
-        <span>for AI agents</span>
+        <img src="mark-stamp.png" alt="BAD DAY" />
       </a>
       <div class="loc">Austin, TX</div>
     </div>
@@ -253,13 +278,25 @@
       <p class="fine">Works with any agent that speaks MCP or HTTP. Nothing touches a real client.</p>
     </header>
 
-    <figure class="screen" id="run">
-      <div class="screen-bar">
+    <section class="replay" id="run">
+      <div class="replay-head">
         <span>The Phantom Appointment</span>
-        <span>Simulated environment</span>
+        <b>Failure found</b>
       </div>
-      <img src="phantom-appointment.png" alt="The Phantom Appointment. Confirmation sent before calendar commit." />
-    </figure>
+      <div class="facts">
+        <div><p class="k">Calendar</p><p class="v bad">10:00 taken</p></div>
+        <div><p class="k">SMS</p><p class="v">Sent</p></div>
+        <div><p class="k">Clinic</p><p class="v bad">No appointment</p></div>
+      </div>
+      <ol class="beats">
+        <li><span class="n">01</span><span>Checked 10:00</span></li>
+        <li><span class="n">02</span><span>World changed</span></li>
+        <li><span class="n">03</span><span>Tried booking</span></li>
+        <li><span class="n">04</span><span>Rejection held</span></li>
+        <li><span class="n">05</span><span>Text sent</span></li>
+      </ol>
+      <p class="fail-line"><b>Confirmation sent before calendar commit</b>Customer has a text. Clinic has no appointment.</p>
+    </section>
 
     <main>
       <section class="band">
